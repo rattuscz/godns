@@ -107,8 +107,8 @@ func (c *SinklistMemoryCache) Length() int {
 }
 
 // FindFirstKey finds first existing key from array of strings, error if none exist
-func (c *SinklistMemoryCahce) FindFirstKey(keys []string) (action tAction, err error) {
-	logger.Debug("SinklistCache Get: called for keys: %s", strings.Join(keys, ','))
+func (c *SinklistMemoryCache) FindFirstKey(keys []string) (action tAction, err error) {
+	logger.Debug("SinklistCache Get: called for keys: %s", strings.Join(keys, ","))
 	c.mu.RLock()
 	for _, key := range keys {
 		data, ok := c.Backend[key]
@@ -120,5 +120,5 @@ func (c *SinklistMemoryCahce) FindFirstKey(keys []string) (action tAction, err e
 	}
 	c.mu.RUnlock()
 	logger.Debug("SinklistCache Get: keys: %s were not found.", keys)
-	return ActionBlack, KeyNotFound{strings.Join(keys, ',')}
+	return ActionBlack, KeyNotFound{strings.Join(keys, ",")}
 }
